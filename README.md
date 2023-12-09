@@ -1,10 +1,13 @@
 # TalkWithChatGPT
-
 ChatGPTと話せるアプリ
 
 # アプリの仕様
-
 テキストフィールドに入力されたテキストを送信し、ChatGPTからのレスポンスを受け取るアプリ
+
+## 動作
+-  TextFieldからユーザーの入力を受け取る
+-  OpenAIのAPIを使用してChatGPTへリクエストを送信する
+-  受け取った情報をTextで表示する
 
 ## 短い会話の場合
 ![image](./ForReadMeImage/SampleMovie.gif)
@@ -15,7 +18,6 @@ scrollViewにしているので問題なく閲覧できる
 ![image](./ForReadMeImage/SampleMovieLongVersion.gif)
 
 # 開発環境
-
 環境|バージョン
 ---|---
 IDE| Xcode 15.0.1
