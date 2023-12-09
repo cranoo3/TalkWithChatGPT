@@ -71,6 +71,9 @@ struct ContentView: View {
                         .opacity(0.6)
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                .onTapGesture(perform: {
+                    focus = false
+                })
                 
                 // テキストフィールドと送信ボタン
                 Group {
@@ -117,9 +120,6 @@ struct ContentView: View {
             }
             .padding(.horizontal)
         }
-        .onTapGesture(perform: {
-            focus = false
-        })
         .alert("エラーが発生しました", isPresented: $viewModel.isShowErrorAlert) {
             Button(role: .cancel) {
                 // 何もしないので処理はなし
