@@ -22,6 +22,8 @@ struct ChatGPTAPICliant {
         }
     }
     
+    
+    
     // URLを作る関数 -> いい感じのURL
     private func makeURLComponents() throws -> URLComponents {
         // 正しいURLか確認するコンピューテッドプロパティ
@@ -42,11 +44,17 @@ struct ChatGPTAPICliant {
         }
     }
     
-    func fetch(content: String) async -> Result<ChatGPTResponse, Error> {
+    func fetch(message: [String]) async -> Result<ChatGPTResponse, Error> {
         do {
             guard let url = try makeURLComponents().url else {
                 return .failure(CommunicationError.cannotCreateURL)
             }
+            
+            // 配列のmessageをString型に変換しています
+            // .joined(separator: ",")で配列の要素をカンマ区切りにしています
+            // .replacingOccurrences(of: "\n", with: "")で改行コードを消しています。消さないとエラーになるみたい...
+            let convertMessage = message.joined(separator: ",").replacingOccurrences(of: "\n", with: "")
+            print("fetch: \(convertMessage)")
             
             // MARK: - URLリクエストを作成
             
@@ -55,12 +63,10 @@ struct ChatGPTAPICliant {
             urlRequest.allHTTPHeaderFields = ["Authorization" : "Bearer \(apiKey)"
                                               ,"OpenAI-Organization": organizationID
                                               ,"Content-Type" : "application/json"]
-            print(content)
-            
             urlRequest.httpBody = """
 {
 "model" : "gpt-3.5-turbo"
-,"messages": [{"role": "user", "content": "\(content)"}]
+,"messages": [\(convertMessage)]
 }
 """.data(using: .utf8)
             

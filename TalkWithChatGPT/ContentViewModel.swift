@@ -22,6 +22,7 @@ class ContentViewModel: ObservableObject {
     @Published var sentMessage: String
     
     let client = ChatGPTAPICliant()
+    var message: [String]
     
     init() {
         data = ChatGPTResponse(id: "", object: "", created: 0, model: "",
@@ -34,6 +35,21 @@ class ContentViewModel: ObservableObject {
         isFetching = false
         content = ""
         sentMessage = ""
+        message = []
+    }
+    
+    func setUserMessage(content: String) {
+        message.append("""
+{"role": "user", "content": "\(content)"}
+"""
+)
+    }
+    
+    func setAssistantMessage(content: String) {
+        message.append("""
+{"role": "assistant", "content": "\(content)"}
+"""
+)
     }
     
     @MainActor
@@ -41,17 +57,22 @@ class ContentViewModel: ObservableObject {
         Task {
             // フェッチ中のフラグ
             isFetching = true
-            // messageに代入してcontentの文字を空にする
+            // Viewに表示するためにsentMessageへ代入する
             sentMessage = content
+            // メッセージをセットする
+            setUserMessage(content: self.content)
             content = ""
             
-            let result = await client.fetch(content: sentMessage)
+            let result = await client.fetch(message: self.message)
             
             
             // 戻ってきた結果が良ければ情報を入れる
             switch result {
             case .success(let data):
                 self.data = data
+                // 会話の履歴を追加する
+                setAssistantMessage(content: data.choices.first?.message.content ?? "no message")
+                
             case .failure(let error):
                 isShowErrorAlert = true
                 if let error = error as? CommunicationError {
@@ -60,7 +81,7 @@ class ContentViewModel: ObservableObject {
                     errorMessage = error.localizedDescription
                 }
             }
-            print(data.choices.first?.message.content ?? "no message")
+            // ロード終了
             isFetching = false
         }
     }

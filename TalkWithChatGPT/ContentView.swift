@@ -54,6 +54,7 @@ struct ContentView: View {
                             if viewModel.isFetching {
                                 VStack {
                                     ProgressView()
+                                        .padding()
                                     Text("読み込むまでお待ちください")
                                 }
                             } else {
@@ -78,7 +79,7 @@ struct ContentView: View {
                 // テキストフィールドと送信ボタン
                 Group {
                     HStack {
-                        TextField("連続した会話はできません", text: $viewModel.content)
+                        TextField("メッセージ", text: $viewModel.content)
                             .focused($focus)
                             .frame(height: 40)
                             .padding(.horizontal)
