@@ -22,7 +22,7 @@ struct ContentView: View {
                 .opacity(0.2)
             
             VStack {
-                // タイトルの設定(NavigationTitleの挙動が気に食わなかたので…。)
+                // タイトルの文字(NavigationTitleの挙動が気に食わなかたので…。)
                 Text("Talk With ChatGPT")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.largeTitle)
@@ -31,14 +31,14 @@ struct ContentView: View {
                 
                 Spacer()
                 
+                // 送ったメッセージ、受け取ったメッセージが表示されるView
                 MessageView(viewModel: self.viewModel)
                     .onTapGesture(perform: {
                         // タップされた時にキーボードのフォーカスを外す
                         focus = false
                     })
                 
-                
-                // テキストフィールドと送信ボタン
+                // テキストフィールドと送信ボタンのView
                 MessageTextFieldView(viewModel: viewModel, focus: self._focus)
                     .padding(.vertical)
             }
