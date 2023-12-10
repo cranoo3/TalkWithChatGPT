@@ -13,11 +13,15 @@
 		1D55AC812B2441BD003D1904 /* ChatGPTAPICliant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D55AC802B2441BD003D1904 /* ChatGPTAPICliant.swift */; };
 		1D55AC842B2442CC003D1904 /* ChatGPTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D55AC832B2442CC003D1904 /* ChatGPTResponse.swift */; };
 		1D5B8FF02B243C6D00886EE5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B8FEF2B243C6D00886EE5 /* Common.swift */; };
+		1D9677072B25F86B009D259D /* extensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9677062B25F86B009D259D /* extensionString.swift */; };
 		1DAFA1D72B21BF93003282D5 /* TalkWithChatGPTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFA1D62B21BF93003282D5 /* TalkWithChatGPTApp.swift */; };
 		1DAFA1D92B21BF93003282D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFA1D82B21BF93003282D5 /* ContentView.swift */; };
 		1DAFA1DB2B21BF95003282D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DAFA1DA2B21BF95003282D5 /* Assets.xcassets */; };
 		1DAFA1DE2B21BF95003282D5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DAFA1DD2B21BF95003282D5 /* Preview Assets.xcassets */; };
 		1DC09F982B22C55C009F76EB /* Application.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DC09F972B22C55C009F76EB /* Application.plist */; };
+		1DC7F3312B2637B500CFA589 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC7F3302B2637B500CFA589 /* MessageView.swift */; };
+		1DC7F3332B26389C00CFA589 /* MessageTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC7F3322B26389C00CFA589 /* MessageTextFieldView.swift */; };
+		1DC7F3372B2639BD00CFA589 /* MenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC7F3362B2639BD00CFA589 /* MenuButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,12 +31,16 @@
 		1D55AC802B2441BD003D1904 /* ChatGPTAPICliant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTAPICliant.swift; sourceTree = "<group>"; };
 		1D55AC832B2442CC003D1904 /* ChatGPTResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTResponse.swift; sourceTree = "<group>"; };
 		1D5B8FEF2B243C6D00886EE5 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		1D9677062B25F86B009D259D /* extensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionString.swift; sourceTree = "<group>"; };
 		1DAFA1D32B21BF93003282D5 /* TalkWithChatGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalkWithChatGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DAFA1D62B21BF93003282D5 /* TalkWithChatGPTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkWithChatGPTApp.swift; sourceTree = "<group>"; };
 		1DAFA1D82B21BF93003282D5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1DAFA1DA2B21BF95003282D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DAFA1DD2B21BF95003282D5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1DC09F972B22C55C009F76EB /* Application.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Application.plist; sourceTree = "<group>"; };
+		1DC7F3302B2637B500CFA589 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		1DC7F3322B26389C00CFA589 /* MessageTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextFieldView.swift; sourceTree = "<group>"; };
+		1DC7F3362B2639BD00CFA589 /* MenuButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +60,7 @@
 				1D55AC7F2B24416A003D1904 /* Error */,
 				1D55AC7C2B2440AF003D1904 /* GetPlist */,
 				1D55AC822B2441EA003D1904 /* Communicate */,
+				1D9677062B25F86B009D259D /* extensionString.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -103,6 +112,7 @@
 			children = (
 				1DAFA1D62B21BF93003282D5 /* TalkWithChatGPTApp.swift */,
 				1DAFA1D82B21BF93003282D5 /* ContentView.swift */,
+				1DC7F3342B26396D00CFA589 /* Views */,
 				1D3B988A2B235D26004ADE41 /* ContentViewModel.swift */,
 				1D3B98812B22D8D3004ADE41 /* Model */,
 				1DC09F972B22C55C009F76EB /* Application.plist */,
@@ -118,6 +128,24 @@
 				1DAFA1DD2B21BF95003282D5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1DC7F3342B26396D00CFA589 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1DC7F3302B2637B500CFA589 /* MessageView.swift */,
+				1DC7F3322B26389C00CFA589 /* MessageTextFieldView.swift */,
+				1DC7F3352B2639A500CFA589 /* Menu */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1DC7F3352B2639A500CFA589 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				1DC7F3362B2639BD00CFA589 /* MenuButtonView.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +164,8 @@
 			dependencies = (
 			);
 			name = TalkWithChatGPT;
+			packageProductDependencies = (
+			);
 			productName = TalkWithChatGPT;
 			productReference = 1DAFA1D32B21BF93003282D5 /* TalkWithChatGPT.app */;
 			productType = "com.apple.product-type.application";
@@ -164,6 +194,8 @@
 				Base,
 			);
 			mainGroup = 1DAFA1CA2B21BF93003282D5;
+			packageReferences = (
+			);
 			productRefGroup = 1DAFA1D42B21BF93003282D5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -194,8 +226,12 @@
 				1DAFA1D92B21BF93003282D5 /* ContentView.swift in Sources */,
 				1DAFA1D72B21BF93003282D5 /* TalkWithChatGPTApp.swift in Sources */,
 				1D55AC842B2442CC003D1904 /* ChatGPTResponse.swift in Sources */,
+				1DC7F3372B2639BD00CFA589 /* MenuButtonView.swift in Sources */,
 				1D3B98872B235667004ADE41 /* GetPlistValue.swift in Sources */,
+				1DC7F3312B2637B500CFA589 /* MessageView.swift in Sources */,
 				1D55AC7E2B244153003D1904 /* CommunicationError.swift in Sources */,
+				1D9677072B25F86B009D259D /* extensionString.swift in Sources */,
+				1DC7F3332B26389C00CFA589 /* MessageTextFieldView.swift in Sources */,
 				1D5B8FF02B243C6D00886EE5 /* Common.swift in Sources */,
 				1D55AC812B2441BD003D1904 /* ChatGPTAPICliant.swift in Sources */,
 				1D3B988B2B235D26004ADE41 /* ContentViewModel.swift in Sources */,

@@ -7,10 +7,9 @@
 
 import Foundation
 
-/// plistに入力されたURL、APIKey、OrganizationIDを取得する構造体
+/// plistに入力されたURL、GPTModel、APIKey、OrganizationIDを取得する構造体
 struct GetPlistValue {
     static let shared = GetPlistValue()
-    
     
     /// plistからURLの文字列を取得して返す関数
     /// - Returns: String型を返します。URLとして使用する時は変換してください
@@ -21,6 +20,17 @@ struct GetPlistValue {
         }
         
         return urlString
+    }
+    
+    /// plistからGPTModelの文字列を取得して返す関数
+    /// - Returns: String型を返します。URLとして使用する時は変換してください
+    func getGPTModel() -> String {
+        // plistからurlの文字列を取得
+        guard let model = Common.shared.getValue(key: "model") else {
+            return "String Converting Error"
+        }
+        
+        return model
     }
     
     /// plistからAPIKeyを取得する関数

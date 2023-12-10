@@ -8,48 +8,90 @@
 import Foundation
 
 class ContentViewModel: ObservableObject {
+    /// APICliant
+    let client = ChatGPTAPICliant()
     /// ChatGPTから帰ってきたデータが入っています
     @Published var data: ChatGPTResponse
     /// エラーが発生した場合にアラートを表示させるためのフラグです
     @Published var isShowErrorAlert: Bool
-    /// フェッチ中はtrueになる
+    /// データを削除する時に表示するアラートです
+    @Published var isShowDeleteAlert: Bool
+    /// フェッチ中はtrueになるフラグ。ProgressViewの制御に使用
     @Published var isFetching: Bool
     /// エラーメッセージが入る
     @Published var errorMessage: String?
     /// ChatGPTへ送る文字列
     @Published var content: String
-    /// 送った文字列(表示用)
+    /// ユーザーが送った文字列(表示用)
     @Published var sentMessage: String
-    
-    let client = ChatGPTAPICliant()
+    /// ChatGPTから送られてきた文字列
+    @Published var fromChatGPT: String
+    @Published var gptModel: String
+    /// ChatGPTとの会話の履歴が入ります
     var message: [String]
     
+    // 初期化処理
     init() {
         data = ChatGPTResponse(id: "", object: "", created: 0, model: "",
                                choices: [
-                                Choice(index: 0, message: Message(role: "", content: "ここに表示されます"),finishReason: "")
+                                Choice(index: 0, message: Message(role: "", content: "未取得"),finishReason: "")
                                ],
                                usage: Usage(promptTokens: 0, completionTokens: 0, totalTokens: 0),
                                systemFingerprint: JSONNull())
         isShowErrorAlert = false
+        isShowDeleteAlert = false
         isFetching = false
         content = ""
         sentMessage = ""
+        fromChatGPT = ""
+        gptModel = ""
         message = []
+        modelDecision()
     }
     
-    func setUserMessage(content: String) {
+    /// ユーザー のcontentを追加する関数
+    /// この関数はデータをフェッチする時に使用しています
+    /// messageにユーザーが入力された文字が入る
+    private func setUserMessage(content: String) {
         message.append("""
 {"role": "user", "content": "\(content)"}
 """
 )
+        print("setUser: \(message)")
     }
     
-    func setAssistantMessage(content: String) {
+    /// ChatGPTから戻ってきたデータをcontentに追加する関数
+    /// この関数は正しい形式でデータが戻ってきた時に実行されます
+    /// messageにChatGPTから戻ってきた文字が入ります
+    private func setAssistantMessage(content: String) {
         message.append("""
 {"role": "assistant", "content": "\(content)"}
 """
 )
+        print("setAssistant: \(message)")
+    }
+    
+    /// GPTモデルを判定する
+    private func modelDecision() {
+        // GPTModelが入ります。GPTModelはApplication.plistに記載されています
+        let model = GetPlistValue.shared.getGPTModel()
+        switch model {
+        case "gpt-3.5-turbo":
+            gptModel = "GPT-3.5-Turbo"
+        case "gpt-4":
+            gptModel = "GPT-4"
+        default:
+            gptModel = "unknown Model"
+        }
+    }
+    
+    /// fetchが行えるか判定する
+    func fetchDecision() -> Bool {
+        // フェッチ中でもなくユーザーの入力が空でもない場合に行えるようにする
+        if !(isFetching || content == "") {
+            return true
+        }
+        return false
     }
     
     @MainActor
@@ -61,6 +103,7 @@ class ContentViewModel: ObservableObject {
             sentMessage = content
             // メッセージをセットする
             setUserMessage(content: self.content)
+            // TextFieldの文字を空にする
             content = ""
             
             let result = await client.fetch(message: self.message)
@@ -72,7 +115,8 @@ class ContentViewModel: ObservableObject {
                 self.data = data
                 // 会話の履歴を追加する
                 setAssistantMessage(content: data.choices.first?.message.content ?? "no message")
-                
+                // Viewに表示するためのテキストを代入する
+                fromChatGPT = data.choices.first?.message.content ?? "no Message" 
             case .failure(let error):
                 isShowErrorAlert = true
                 if let error = error as? CommunicationError {
@@ -81,8 +125,14 @@ class ContentViewModel: ObservableObject {
                     errorMessage = error.localizedDescription
                 }
             }
+            
             // ロード終了
             isFetching = false
         }
+    }
+    
+    /// データを削除します
+    func deleteData() {
+        isShowDeleteAlert = true
     }
 }

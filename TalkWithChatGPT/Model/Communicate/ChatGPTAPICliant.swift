@@ -12,6 +12,7 @@ struct ChatGPTAPICliant {
     let urlString = GetPlistValue.shared.getUrlString()
     let apiKey = GetPlistValue.shared.getApiKey()
     let organizationID = GetPlistValue.shared.getOrganizationID()
+    let model = GetPlistValue.shared.getGPTModel()
     
     // String型をURL型に変換する
     var urlResult: Result<URL, Error> {
@@ -21,8 +22,6 @@ struct ChatGPTAPICliant {
             return .failure(CommunicationError.badURL)
         }
     }
-    
-    
     
     // URLを作る関数 -> いい感じのURL
     private func makeURLComponents() throws -> URLComponents {
@@ -52,12 +51,11 @@ struct ChatGPTAPICliant {
             
             // 配列のmessageをString型に変換しています
             // .joined(separator: ",")で配列の要素をカンマ区切りにしています
-            // .replacingOccurrences(of: "\n", with: "")で改行コードを消しています。消さないとエラーになるみたい...
+            // .replacingOccurrences(of: "\n", with: "")で改行コードを消しています。消さないとエラーになる...
             let convertMessage = message.joined(separator: ",").replacingOccurrences(of: "\n", with: "")
             print("fetch: \(convertMessage)")
             
             // MARK: - URLリクエストを作成
-            
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.allHTTPHeaderFields = ["Authorization" : "Bearer \(apiKey)"
@@ -65,7 +63,7 @@ struct ChatGPTAPICliant {
                                               ,"Content-Type" : "application/json"]
             urlRequest.httpBody = """
 {
-"model" : "gpt-3.5-turbo"
+"model" : "\(model)"
 ,"messages": [\(convertMessage)]
 }
 """.data(using: .utf8)

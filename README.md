@@ -23,13 +23,14 @@ scrollViewにしているので問題なく閲覧できる
 IDE| Xcode 15.0.1
 Swift| Swift 5.9
 ターゲットOS | iOS16.0以上
-GPTバージョン | GPT3.5 Turbo
+GPTバージョン | GPT-4
 
 ## API Keyなどについて
 - API Key、Organization IDはOpenAIのサイトから取得してください
 - 取得方法は[こちらのサイト](https://note.com/libproc/n/nc777ee0b3bf0)を参考にしました(参考にしたサイト等にも記載しています)
 - **APIの無料枠があるか確認しましょう**(僕は$5支払いました...)
 - Application.plistの**apiKeyにAPI Key**、**orgIdにOrganization ID**を入力すると使用できます
+- GPTのモデルを変更する場合は**model**を使いたいモデルにしましょう(例: gpt-3.5-turboやgpt-4など...)
     ![ApplicationPlist](./ForReadMeImage/ApplicationPlist.png)
 
 ## 動作テスト済み機種
@@ -47,5 +48,7 @@ iPhone15ProMax | iOS 17.1.1
 - [[超初心者向け] ChatGPT(OpenAI)のAPI key取得手順](https://note.com/libproc/n/nc777ee0b3bf0)
 
 - [OpenAI developer platform](https://platform.openai.com/docs/overview)
+
+- [ChatGPTのOpenAI APIを初回実行した際出会ったエラー3点](https://zenn.dev/mjxo/articles/342adeec61d56e)
 
 - [ChatGPT APIをSwiftで使ってみる。](https://qiita.com/district_13_bm/items/c946e8043e0e4d55d349)

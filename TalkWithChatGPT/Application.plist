@@ -4,6 +4,8 @@
 <dict>
 	<key>url</key>
 	<string>https://api.openai.com/v1/chat/completions</string>
+	<key>model</key>
+	<string>gpt-4</string>
 	<key>apikey</key>
 	<string></string>
 	<key>orgId</key>
