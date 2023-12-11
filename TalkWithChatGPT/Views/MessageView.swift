@@ -30,6 +30,7 @@ struct MessageView: View {
                     .padding(.vertical)
                 
                 Text(viewModel.gptModel)
+                    .textCase(.uppercase)
                     .font(.title2)
                     .foregroundStyle(Color.gray)
             }

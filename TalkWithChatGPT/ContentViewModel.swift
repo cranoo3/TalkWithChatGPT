@@ -44,9 +44,8 @@ class ContentViewModel: ObservableObject {
         content = ""
         sentMessage = ""
         fromChatGPT = ""
-        gptModel = ""
+        gptModel = GetPlistValue.shared.getGPTModel()
         message = []
-        modelDecision()
     }
     
     /// ユーザー のcontentを追加する関数
@@ -69,20 +68,6 @@ class ContentViewModel: ObservableObject {
 """
 )
         print("setAssistant: \(message)")
-    }
-    
-    /// GPTモデルを判定する
-    private func modelDecision() {
-        // GPTModelが入ります。GPTModelはApplication.plistに記載されています
-        let model = GetPlistValue.shared.getGPTModel()
-        switch model {
-        case "gpt-3.5-turbo":
-            gptModel = "GPT-3.5-Turbo"
-        case "gpt-4":
-            gptModel = "GPT-4"
-        default:
-            gptModel = "unknown Model"
-        }
     }
     
     /// fetchが行えるか判定する
@@ -133,6 +118,6 @@ class ContentViewModel: ObservableObject {
     
     /// データを削除します
     func deleteData() {
-        isShowDeleteAlert = true
+        // code here
     }
 }
