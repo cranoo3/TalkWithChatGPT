@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MenuButtonView: View {
+    @State var isShowDeleteAlert = false
+    
     var body: some View {
         VStack {
             // メニューを表示する(共有と削除)
@@ -22,7 +24,7 @@ struct MenuButtonView: View {
                 
                 // 削除ボタン
                 Button(role: .destructive) {
-                    // delete action
+                    isShowDeleteAlert = true
                 } label: {
                     Image(systemName: "trash.fill")
                     Text("会話の履歴を削除")
@@ -31,10 +33,25 @@ struct MenuButtonView: View {
                 Image(systemName: "ellipsis")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .foregroundStyle(Color.black)
-                    .frame(width: 30, height: 30)
+                    .foregroundStyle(Color.accentColor)
+                    .frame(width: 15, height: 30)
                     .padding(.horizontal, 5)
             }
+        }
+        .alert("会話データを削除しますか？", isPresented: $isShowDeleteAlert) {
+            Button(role: .cancel) {
+                // 何もしないので処理はなし
+            } label: {
+                Text("いいえ")
+            }
+            Button(role: .destructive) {
+                // code
+            } label: {
+                Text("はい")
+            }
+            
+        } message: {
+            Text("今までの会話データが削除されます。よろしいですか？")
         }
     }
 }

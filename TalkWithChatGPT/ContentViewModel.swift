@@ -11,7 +11,7 @@ class ContentViewModel: ObservableObject {
     /// APICliant
     let client = ChatGPTAPICliant()
     /// ChatGPTから帰ってきたデータが入っています
-    @Published var data: ChatGPTResponse
+    var data: ChatGPTResponse
     /// エラーが発生した場合にアラートを表示させるためのフラグです
     @Published var isShowErrorAlert: Bool
     /// データを削除する時に表示するアラートです
@@ -26,9 +26,10 @@ class ContentViewModel: ObservableObject {
     @Published var sentMessage: String
     /// ChatGPTから送られてきた文字列
     @Published var fromChatGPT: String
+    /// GPTモデルの名前?バージョンが入る場所です。(表示用)
     @Published var gptModel: String
-    /// ChatGPTとの会話の履歴が入ります
-    var message: [String]
+    /// ChatGPTに送信するhttpBodyの構造体encodeして使用する
+    var chatGPTRequestMessage: [ChatGPTMessage]
     
     // 初期化処理
     init() {
@@ -42,35 +43,30 @@ class ContentViewModel: ObservableObject {
         isShowDeleteAlert = false
         isFetching = false
         content = ""
-        sentMessage = ""
+        sentMessage = " "
         fromChatGPT = ""
         gptModel = GetPlistValue.shared.getGPTModel()
-        message = []
+        chatGPTRequestMessage = []
     }
     
-    /// ユーザー のcontentを追加する関数
+    /// ユーザー が送信したメッセージの内容を追加します。
     /// この関数はデータをフェッチする時に使用しています
-    /// messageにユーザーが入力された文字が入る
-    private func setUserMessage(content: String) {
-        message.append("""
-{"role": "user", "content": "\(content)"}
-"""
-)
-        print("setUser: \(message)")
+    /// messageにユーザーが入力された文字が入る。encodeして使用
+    func setUserMessage(content: String) {
+        chatGPTRequestMessage.append(ChatGPTMessage(role: "user", content: "\(content)"))
+        print("setUser: \(chatGPTRequestMessage)")
     }
     
     /// ChatGPTから戻ってきたデータをcontentに追加する関数
     /// この関数は正しい形式でデータが戻ってきた時に実行されます
-    /// messageにChatGPTから戻ってきた文字が入ります
+    /// messageにChatGPTから戻ってきた文字が入ります。encodeして使用
     private func setAssistantMessage(content: String) {
-        message.append("""
-{"role": "assistant", "content": "\(content)"}
-"""
-)
-        print("setAssistant: \(message)")
+        chatGPTRequestMessage.append(ChatGPTMessage(role: "assistant", content: "\(content)"))
+        print("setAssistant: \(chatGPTRequestMessage)")
     }
     
     /// fetchが行えるか判定する
+    ///
     func fetchDecision() -> Bool {
         // フェッチ中でもなくユーザーの入力が空でもない場合に行えるようにする
         if !(isFetching || content == "") {
@@ -89,10 +85,9 @@ class ContentViewModel: ObservableObject {
             // メッセージをセットする
             setUserMessage(content: self.content)
             // TextFieldの文字を空にする
-            content = ""
+            content.removeAll()
             
-            let result = await client.fetch(message: self.message)
-            
+            let result = await client.fetch(message: chatGPTRequestMessage)
             
             // 戻ってきた結果が良ければ情報を入れる
             switch result {

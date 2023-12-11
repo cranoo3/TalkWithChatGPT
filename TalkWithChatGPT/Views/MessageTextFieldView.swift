@@ -15,7 +15,7 @@ struct MessageTextFieldView: View {
             // テキストフィールド
             TextField("メッセージ", text: $viewModel.content)
                 .focused($focus)
-                .frame(height: 40)
+                .frame(height: 30)
                 .padding(.horizontal)
                 .background() {
                     Color.gray
@@ -39,12 +39,12 @@ struct MessageTextFieldView: View {
                 Image(systemName: "arrow.up.circle.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 40)
+                    .frame(height: 30)
             }
             // 通信中は送信ボタンを押せないようにする
             .disabled(!viewModel.fetchDecision())
         }
-        .padding(10)
+        .padding(7)
         .background() {
             Color.white
             Color.indigo

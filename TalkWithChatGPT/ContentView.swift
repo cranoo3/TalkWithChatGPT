@@ -12,38 +12,34 @@ struct ContentView: View {
     @FocusState var focus: Bool
     
     var body: some View {
-        ZStack {
-            // 背景色の設定
-            Color.white
-                .ignoresSafeArea()
-            
-            LinearGradient(colors: [.indigo, .purple], startPoint: .bottom, endPoint: .top)
-                .ignoresSafeArea()
-                .opacity(0.2)
-            
-            VStack {
-                // タイトルの文字(NavigationTitleの挙動が気に食わなかたので…。)
-                Text("Talk With ChatGPT")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.vertical)
+        NavigationStack {
+            ZStack {
+                // 背景色の設定
+                Color.white
+                    .ignoresSafeArea()
                 
-                Spacer()
+                // 背景のグラデーション
+                LinearGradient(colors: [.indigo, .purple], startPoint: .bottom, endPoint: .top)
+                    .ignoresSafeArea()
+                    .opacity(0.2)
                 
-                // 送ったメッセージ、受け取ったメッセージが表示されるView
-                MessageView(viewModel: self.viewModel)
-                    .onTapGesture(perform: {
-                        // タップされた時にキーボードのフォーカスを外す
-                        focus = false
-                    })
-                
-                // テキストフィールドと送信ボタンのView
-                MessageTextFieldView(viewModel: viewModel, focus: self._focus)
-                    .padding(.vertical)
+                VStack {
+                    // 送ったメッセージ、受け取ったメッセージが表示されるView
+                    MessageView(viewModel: self.viewModel)
+                        .onTapGesture(perform: {
+                            // タップされた時にキーボードのフォーカスを外す
+                            focus = false
+                        })
+                    
+                    // テキストフィールドと送信ボタンのView
+                    MessageTextFieldView(viewModel: viewModel, focus: self._focus)
+                        .padding(.vertical)
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
+            .navigationTitle("Talk With ChatGPT")
         }
+        // エラーが発生した時のアラート
         .alert("エラーが発生しました", isPresented: $viewModel.isShowErrorAlert) {
             Button(role: .cancel) {
                 // 何もしないので処理はなし
@@ -59,7 +55,6 @@ struct ContentView: View {
         } message: {
             Text(viewModel.errorMessage ?? "エラーです")
         }
-        
     }
 }
 

@@ -25,11 +25,9 @@ struct ChatGPTAPICliant {
     
     // URLを作る関数 -> いい感じのURL
     private func makeURLComponents() throws -> URLComponents {
-        // 正しいURLか確認するコンピューテッドプロパティ
         // 正しくURLだ -> success(正しいURL)
         switch urlResult {
         case .success(let url):
-            // 正しいURL
             // いい感じのURLか確認する
             guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
                 // よくない感じのURLだった -> エラー
@@ -38,22 +36,22 @@ struct ChatGPTAPICliant {
             return components
             
         case .failure(let error):
-            // 正しくないURL -> エラー
             throw error
         }
     }
     
-    func fetch(message: [String]) async -> Result<ChatGPTResponse, Error> {
+    func fetch(message: [ChatGPTMessage]) async -> Result<ChatGPTResponse, Error> {
         do {
             guard let url = try makeURLComponents().url else {
                 return .failure(CommunicationError.cannotCreateURL)
             }
             
-            // 配列のmessageをString型に変換しています
-            // .joined(separator: ",")で配列の要素をカンマ区切りにしています
-            // .replacingOccurrences(of: "\n", with: "")で改行コードを消しています。消さないとエラーになる...
-            let convertMessage = message.joined(separator: ",").replacingOccurrences(of: "\n", with: "")
-            print("fetch: \(convertMessage)")
+            // MARK: - httpBodyを作成
+            var requestBody: Data? {
+                let encodeValue = ChatGPTRequestHttpBody(model: model, messages: message)
+                return try? JSONEncoder().encode(encodeValue)
+            }
+            print(String(data: requestBody!, encoding: .utf8)!)
             
             // MARK: - URLリクエストを作成
             var urlRequest = URLRequest(url: url)
@@ -61,12 +59,7 @@ struct ChatGPTAPICliant {
             urlRequest.allHTTPHeaderFields = ["Authorization" : "Bearer \(apiKey)"
                                               ,"OpenAI-Organization": organizationID
                                               ,"Content-Type" : "application/json"]
-            urlRequest.httpBody = """
-{
-"model" : "\(model)"
-,"messages": [\(convertMessage)]
-}
-""".data(using: .utf8)
+            urlRequest.httpBody = requestBody
             
             guard let (data, urlRequest) = try? await URLSession.shared.data(for: urlRequest) else {
                 return .failure(CommunicationError.badURL)

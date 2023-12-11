@@ -27,7 +27,7 @@ GPTバージョン | GPT-4
 
 ## API Keyなどについて
 - API Key、Organization IDはOpenAIのサイトから取得してください
-- 取得方法は[こちらのサイト](https://note.com/libproc/n/nc777ee0b3bf0)を参考にしました(参考にしたサイト等にも記載しています)
+- 取得方法は[こちらのサイト](https://note.com/libproc/n/nc777ee0b3bf0)を参考にしました([参考にしたサイト等](#参考にしたサイト等)にも記載しています)
 - **APIの無料枠があるか確認しましょう**(僕は$5支払いました...)
 - Application.plistの**apiKeyのValueにAPI Key**、**orgIdのValueにOrganization ID**を入力すると使用できます
 - GPTのモデルを変更する場合は**modelのValue**を使いたいモデルにしましょう(例: gpt-3.5-turboやgpt-4など...)

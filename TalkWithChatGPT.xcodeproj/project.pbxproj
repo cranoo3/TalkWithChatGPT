@@ -13,6 +13,7 @@
 		1D55AC812B2441BD003D1904 /* ChatGPTAPICliant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D55AC802B2441BD003D1904 /* ChatGPTAPICliant.swift */; };
 		1D55AC842B2442CC003D1904 /* ChatGPTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D55AC832B2442CC003D1904 /* ChatGPTResponse.swift */; };
 		1D5B8FF02B243C6D00886EE5 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B8FEF2B243C6D00886EE5 /* Common.swift */; };
+		1D90F7232B26C1DB00ED6E67 /* SampleMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90F7222B26C1DB00ED6E67 /* SampleMessage.swift */; };
 		1D9677072B25F86B009D259D /* extensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9677062B25F86B009D259D /* extensionString.swift */; };
 		1DAFA1D72B21BF93003282D5 /* TalkWithChatGPTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFA1D62B21BF93003282D5 /* TalkWithChatGPTApp.swift */; };
 		1DAFA1D92B21BF93003282D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFA1D82B21BF93003282D5 /* ContentView.swift */; };
@@ -22,6 +23,7 @@
 		1DC7F3312B2637B500CFA589 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC7F3302B2637B500CFA589 /* MessageView.swift */; };
 		1DC7F3332B26389C00CFA589 /* MessageTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC7F3322B26389C00CFA589 /* MessageTextFieldView.swift */; };
 		1DC7F3372B2639BD00CFA589 /* MenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC7F3362B2639BD00CFA589 /* MenuButtonView.swift */; };
+		1DCE105F2B27439E00472B72 /* ChatGPTRequestHttpBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCE105E2B27439E00472B72 /* ChatGPTRequestHttpBody.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,7 @@
 		1D55AC802B2441BD003D1904 /* ChatGPTAPICliant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTAPICliant.swift; sourceTree = "<group>"; };
 		1D55AC832B2442CC003D1904 /* ChatGPTResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTResponse.swift; sourceTree = "<group>"; };
 		1D5B8FEF2B243C6D00886EE5 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		1D90F7222B26C1DB00ED6E67 /* SampleMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleMessage.swift; sourceTree = "<group>"; };
 		1D9677062B25F86B009D259D /* extensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionString.swift; sourceTree = "<group>"; };
 		1DAFA1D32B21BF93003282D5 /* TalkWithChatGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalkWithChatGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DAFA1D62B21BF93003282D5 /* TalkWithChatGPTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkWithChatGPTApp.swift; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 		1DC7F3302B2637B500CFA589 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		1DC7F3322B26389C00CFA589 /* MessageTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextFieldView.swift; sourceTree = "<group>"; };
 		1DC7F3362B2639BD00CFA589 /* MenuButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonView.swift; sourceTree = "<group>"; };
+		1DCE105E2B27439E00472B72 /* ChatGPTRequestHttpBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTRequestHttpBody.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +89,10 @@
 		1D55AC822B2441EA003D1904 /* Communicate */ = {
 			isa = PBXGroup;
 			children = (
+				1DCE105C2B27437800472B72 /* Message */,
 				1D55AC802B2441BD003D1904 /* ChatGPTAPICliant.swift */,
 				1D55AC832B2442CC003D1904 /* ChatGPTResponse.swift */,
+				1DCE105E2B27439E00472B72 /* ChatGPTRequestHttpBody.swift */,
 			);
 			path = Communicate;
 			sourceTree = "<group>";
@@ -146,6 +152,14 @@
 				1DC7F3362B2639BD00CFA589 /* MenuButtonView.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		1DCE105C2B27437800472B72 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				1D90F7222B26C1DB00ED6E67 /* SampleMessage.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,11 +244,13 @@
 				1D3B98872B235667004ADE41 /* GetPlistValue.swift in Sources */,
 				1DC7F3312B2637B500CFA589 /* MessageView.swift in Sources */,
 				1D55AC7E2B244153003D1904 /* CommunicationError.swift in Sources */,
+				1D90F7232B26C1DB00ED6E67 /* SampleMessage.swift in Sources */,
 				1D9677072B25F86B009D259D /* extensionString.swift in Sources */,
 				1DC7F3332B26389C00CFA589 /* MessageTextFieldView.swift in Sources */,
 				1D5B8FF02B243C6D00886EE5 /* Common.swift in Sources */,
 				1D55AC812B2441BD003D1904 /* ChatGPTAPICliant.swift in Sources */,
 				1D3B988B2B235D26004ADE41 /* ContentViewModel.swift in Sources */,
+				1DCE105F2B27439E00472B72 /* ChatGPTRequestHttpBody.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

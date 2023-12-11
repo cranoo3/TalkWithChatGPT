@@ -18,7 +18,7 @@ struct MessageView: View {
             Text("You: ")
                 .font(.title2)
                 .fontWeight(.bold)
-                .padding(.bottom)
+                .padding(.bottom, 5)
             Text(viewModel.sentMessage)
             
             Divider()
@@ -27,13 +27,13 @@ struct MessageView: View {
                 Text("ChatGPT: ")
                     .font(.title2)
                     .fontWeight(.bold)
-                    .padding(.vertical)
                 
                 Text(viewModel.gptModel)
                     .textCase(.uppercase)
                     .font(.title2)
                     .foregroundStyle(Color.gray)
             }
+            .padding(.top, 5)
             
             // ChatGPTからの返答を表示する
             ScrollView {
@@ -48,6 +48,7 @@ struct MessageView: View {
                     } else {
                         Text(viewModel.fromChatGPT.getAttributedString())
                             .frame(maxWidth: .infinity, alignment: .leading)
+                        
                     }
                 }
                 .frame(maxWidth: .infinity)
