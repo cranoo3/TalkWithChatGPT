@@ -10,6 +10,7 @@ import SwiftUI
 struct MessageView: View {
     @ObservedObject var viewModel: ContentViewModel
     
+    
     var body: some View {
         // 送信した文字列を表示
         // ChatGPTからの返信欄
@@ -19,7 +20,9 @@ struct MessageView: View {
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.bottom, 5)
+            
             Text(viewModel.sentMessage)
+                .frame(minHeight: 20)
             
             Divider()
             
@@ -46,7 +49,8 @@ struct MessageView: View {
                             Text("読み込むまでお待ちください")
                         }
                     } else {
-                        Text(viewModel.fromChatGPT.getAttributedString())
+                        Text(viewModel.receivedMessage)
+                            .frame(minHeight: 20)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                     }
@@ -58,6 +62,7 @@ struct MessageView: View {
         .background(.thinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 25.0))
         .shadow(radius: 10)
+        
     }
 }
 

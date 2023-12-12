@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0D248D2B28BA3800CCA5B6 /* SetChatGPTMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0D248C2B28BA3800CCA5B6 /* SetChatGPTMessages.swift */; };
 		1D3B98872B235667004ADE41 /* GetPlistValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3B98862B235667004ADE41 /* GetPlistValue.swift */; };
 		1D3B988B2B235D26004ADE41 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3B988A2B235D26004ADE41 /* ContentViewModel.swift */; };
 		1D55AC7E2B244153003D1904 /* CommunicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D55AC7D2B244153003D1904 /* CommunicationError.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D0D248C2B28BA3800CCA5B6 /* SetChatGPTMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetChatGPTMessages.swift; sourceTree = "<group>"; };
 		1D3B98862B235667004ADE41 /* GetPlistValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlistValue.swift; sourceTree = "<group>"; };
 		1D3B988A2B235D26004ADE41 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		1D55AC7D2B244153003D1904 /* CommunicationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationError.swift; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D0D248E2B28BE4E00CCA5B6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1D3B988A2B235D26004ADE41 /* ContentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		1D3B98812B22D8D3004ADE41 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,7 +129,7 @@
 				1DAFA1D62B21BF93003282D5 /* TalkWithChatGPTApp.swift */,
 				1DAFA1D82B21BF93003282D5 /* ContentView.swift */,
 				1DC7F3342B26396D00CFA589 /* Views */,
-				1D3B988A2B235D26004ADE41 /* ContentViewModel.swift */,
+				1D0D248E2B28BE4E00CCA5B6 /* ViewModel */,
 				1D3B98812B22D8D3004ADE41 /* Model */,
 				1DC09F972B22C55C009F76EB /* Application.plist */,
 				1DAFA1DA2B21BF95003282D5 /* Assets.xcassets */,
@@ -157,6 +167,7 @@
 		1DCE105C2B27437800472B72 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				1D0D248C2B28BA3800CCA5B6 /* SetChatGPTMessages.swift */,
 				1D90F7222B26C1DB00ED6E67 /* SampleMessage.swift */,
 			);
 			path = Message;
@@ -242,6 +253,7 @@
 				1D55AC842B2442CC003D1904 /* ChatGPTResponse.swift in Sources */,
 				1DC7F3372B2639BD00CFA589 /* MenuButtonView.swift in Sources */,
 				1D3B98872B235667004ADE41 /* GetPlistValue.swift in Sources */,
+				1D0D248D2B28BA3800CCA5B6 /* SetChatGPTMessages.swift in Sources */,
 				1DC7F3312B2637B500CFA589 /* MessageView.swift in Sources */,
 				1D55AC7E2B244153003D1904 /* CommunicationError.swift in Sources */,
 				1D90F7232B26C1DB00ED6E67 /* SampleMessage.swift in Sources */,

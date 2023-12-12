@@ -21,7 +21,7 @@ struct ContentView: View {
                 // 背景のグラデーション
                 LinearGradient(colors: [.indigo, .purple], startPoint: .bottom, endPoint: .top)
                     .ignoresSafeArea()
-                    .opacity(0.2)
+                    .opacity(0.15)
                 
                 VStack {
                     // 送ったメッセージ、受け取ったメッセージが表示されるView

@@ -51,7 +51,6 @@ struct ChatGPTAPICliant {
                 let encodeValue = ChatGPTRequestHttpBody(model: model, messages: message)
                 return try? JSONEncoder().encode(encodeValue)
             }
-            print(String(data: requestBody!, encoding: .utf8)!)
             
             // MARK: - URLリクエストを作成
             var urlRequest = URLRequest(url: url)

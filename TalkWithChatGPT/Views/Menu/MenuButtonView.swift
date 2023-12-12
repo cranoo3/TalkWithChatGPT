@@ -8,23 +8,28 @@
 import SwiftUI
 
 struct MenuButtonView: View {
-    @State var isShowDeleteAlert = false
+    @ObservedObject var viewModel: ContentViewModel
     
     var body: some View {
         VStack {
             // メニューを表示する(共有と削除)
             Menu() {
                 // 共有ボタン
-                Button() {
-                    // share action
-                } label: {
+//                Button() {
+//
+//                } label: {
+//                    Image(systemName: "square.and.arrow.up")
+//                    Text("会話を共有")
+//                }
+                
+                ShareLink(item: viewModel.shareData()) {
                     Image(systemName: "square.and.arrow.up")
                     Text("会話を共有")
                 }
                 
                 // 削除ボタン
                 Button(role: .destructive) {
-                    isShowDeleteAlert = true
+                    viewModel.isShowDeleteAlert = true
                 } label: {
                     Image(systemName: "trash.fill")
                     Text("会話の履歴を削除")
@@ -38,14 +43,14 @@ struct MenuButtonView: View {
                     .padding(.horizontal, 5)
             }
         }
-        .alert("会話データを削除しますか？", isPresented: $isShowDeleteAlert) {
+        .alert("会話データを削除しますか？", isPresented: $viewModel.isShowDeleteAlert) {
             Button(role: .cancel) {
                 // 何もしないので処理はなし
             } label: {
                 Text("いいえ")
             }
             Button(role: .destructive) {
-                // code
+                viewModel.deleteData()
             } label: {
                 Text("はい")
             }
@@ -57,5 +62,5 @@ struct MenuButtonView: View {
 }
 
 #Preview {
-    MenuButtonView()
+    MenuButtonView(viewModel: ContentViewModel())
 }

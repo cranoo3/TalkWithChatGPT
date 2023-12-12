@@ -14,5 +14,6 @@ struct ChatGPTRequestHttpBody: Codable {
 }
 
 struct ChatGPTMessage: Codable {
-    let role, content: String
+    let role: String
+    let content: String
 }

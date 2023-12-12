@@ -29,7 +29,7 @@ struct MessageTextFieldView: View {
                 }
             
             // メニューを表示する(共有と削除)
-            MenuButtonView()
+            MenuButtonView(viewModel: viewModel)
             
             // 右側の送信ボタン
             Button() {
