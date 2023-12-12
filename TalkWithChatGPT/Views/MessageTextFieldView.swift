@@ -14,6 +14,7 @@ struct MessageTextFieldView: View {
         HStack {
             // テキストフィールド
             TextField("メッセージ", text: $viewModel.content)
+                .keyboardType(.webSearch)
                 .focused($focus)
                 .frame(height: 30)
                 .padding(.horizontal)

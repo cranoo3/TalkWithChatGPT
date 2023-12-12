@@ -15,16 +15,10 @@ struct MenuButtonView: View {
             // メニューを表示する(共有と削除)
             Menu() {
                 // 共有ボタン
-//                Button() {
-//
-//                } label: {
-//                    Image(systemName: "square.and.arrow.up")
-//                    Text("会話を共有")
-//                }
-                
                 ShareLink(item: viewModel.shareData()) {
                     Image(systemName: "square.and.arrow.up")
                     Text("会話を共有")
+                    
                 }
                 
                 // 削除ボタン
