@@ -7,7 +7,9 @@
 
 import Foundation
 
-class SetChatGPTMessages: Codable {
+/// ChatGPTに送信するメッセージ、受け取ったメッセージを管理するクラス
+class MessageManager: Codable, Identifiable {
+    /// メッセージの履歴が入ります
     var messages: [Message]
     
     init () {
@@ -20,5 +22,12 @@ class SetChatGPTMessages: Codable {
     /// messageにユーザーが入力された文字が入る。encodeして使用
     func setUserMessage(content: String) {
         messages.append(Message(role: "user", content: "\(content)"))
+    }
+    
+    // MARK: - setUserMessage
+    /// 受け取ったメッセージを追加します
+    /// この関数はデータをフェッチする時に使用しています
+    func setAssistantMessage(message: Message) {
+        messages.append(message)
     }
 }

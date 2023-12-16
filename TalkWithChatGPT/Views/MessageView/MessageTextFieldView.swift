@@ -46,11 +46,7 @@ struct MessageTextFieldView: View {
             .disabled(!viewModel.fetchDecision())
         }
         .padding(7)
-        .background() {
-            Color.white
-            Color.indigo
-                .opacity(0.2)
-        }
+        .background(.ultraThinMaterial)
         .clipShape(Capsule())
         .shadow(radius: 10)
     }

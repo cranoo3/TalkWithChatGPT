@@ -10,12 +10,24 @@ ChatGPTと話せるアプリ
 -  受け取った情報をTextで表示する
 
 ## 短い会話の場合
-![image](./ForReadMeImage/SampleMovie.gif)
+![image](./ForReadMeImage/SampleShortMessage.gif)
 
 ## 長い会話の場合
 scrollViewにしているので問題なく閲覧できる
 
-![image](./ForReadMeImage/SampleMovieLongVersion.gif)
+![image](./ForReadMeImage/SampleLongMessage.gif)
+
+## おまけ機能
+テキストフィールドの横にある`・・・` のメニューの中にある
+
+会話削除は使えるかな…？
+- 会話削除
+
+  ![image](./ForReadMeImage/SampleDeleteMessage.gif)
+
+- 共有
+
+  ![image](./ForReadMeImage/SampleShareMessage.gif)
 
 # 開発環境
 環境|バージョン
@@ -23,7 +35,7 @@ scrollViewにしているので問題なく閲覧できる
 IDE| Xcode 15.0.1
 Swift| Swift 5.9
 ターゲットOS | iOS16.0以上
-GPTバージョン | GPT-4
+GPTバージョン | GPT-4 (変更可能)
 
 ## API Keyなどについて
 - API Key、Organization IDはOpenAIのサイトから取得してください
@@ -45,7 +57,7 @@ iPhone15ProMax | iOS 17.1.1
 # 今後改善したいポイント
 
 - Markdownへの対応
-- チャットアプリっぽい見た目に変更したい
+- コードの可読性高上
 
 # 参考にしたサイト等
 これらのサイトや今までの課題アプリを参考に作成しました!

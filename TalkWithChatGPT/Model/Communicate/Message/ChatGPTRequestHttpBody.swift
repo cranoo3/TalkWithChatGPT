@@ -7,7 +7,8 @@
 
 import Foundation
 
-
+/// メッセージをHTTPBodyに変換するための構造体です
+/// ChatGPTAPICliantで使用しています
 struct ChatGPTRequestHttpBody: Codable {
     let model: String
     let messages: [Message]

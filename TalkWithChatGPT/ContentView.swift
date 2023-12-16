@@ -23,19 +23,33 @@ struct ContentView: View {
                     .ignoresSafeArea()
                     .opacity(0.15)
                 
+                // 送ったメッセージ、受け取ったメッセージが表示されるView
+                MessageView(viewModel: self.viewModel)
+                    .onTapGesture(perform: {
+                        // タップされた時にキーボードのフォーカスを外す
+                        focus = false
+                    })
+                
+                // 重ねて表示させたいのでVStackとSpacer()で
                 VStack {
-                    // 送ったメッセージ、受け取ったメッセージが表示されるView
-                    MessageView(viewModel: self.viewModel)
-                        .onTapGesture(perform: {
-                            // タップされた時にキーボードのフォーカスを外す
-                            focus = false
-                        })
+                    Spacer()
                     
                     // テキストフィールドと送信ボタンのView
-                    MessageTextFieldView(viewModel: viewModel, focus: self._focus)
-                        .padding(.vertical)
+                    MessageTextFieldView(viewModel: self.viewModel, focus: self._focus)
+                        .padding(.bottom)
+                        .padding(.horizontal)
+                        // 背景色を透明に見せたい！
+                        .background {
+                            // 背景色の設定
+                            Color.white
+                                .ignoresSafeArea()
+                            // 背景色
+                            Color.indigo
+                                .ignoresSafeArea()
+                                .opacity(0.15)
+                        }
                 }
-                .padding(.horizontal)
+                
             }
             .navigationTitle("Talk With ChatGPT")
         }

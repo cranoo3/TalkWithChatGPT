@@ -40,6 +40,10 @@ struct ChatGPTAPICliant {
         }
     }
     
+    
+    /// フェッチする関数
+    /// - Parameter messages: ChatGPTResponseのMessageを使用しています。
+    /// - Returns: フェッチした結果を返します。正しくフェッチできた場合はJSONからStructへ変換します
     func fetch(messages: [Message]) async -> Result<ChatGPTResponse, Error> {
         do {
             guard let url = try makeURLComponents().url else {

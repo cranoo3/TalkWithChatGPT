@@ -13,12 +13,12 @@ class ContentViewModel: ObservableObject {
     /// ChatGPTから帰ってきたデータが入っています
     var data: ChatGPTResponse
     /// ChatGPTへ送るメッセージを設定するクラス
-    var chatMessages = SetChatGPTMessages()
+    @Published var messageManager = MessageManager()
     /// エラーが発生した場合にアラートを表示させるためのフラグです
     @Published var isShowErrorAlert: Bool
     /// データを削除する時に表示するアラートです
     @Published var isShowDeleteAlert: Bool
-    /// フェッチ中はtrueになるフラグ。ProgressViewの制御に使用
+    /// フェッチ中はtrueになるフラグ。制御に使用
     @Published var isFetching: Bool
     /// エラーメッセージが入る
     @Published var errorMessage: String?
@@ -57,7 +57,7 @@ class ContentViewModel: ObservableObject {
         /// 会話データをJSONからStringへ変換します
         let convertData = { () -> Result<String, Error> in
             // 構造体をStringへ変換
-            let encodeValue = self.chatMessages.messages
+            let encodeValue = self.messageManager.messages
             guard let shareValue = try? JSONEncoder().encode(encodeValue) else {
                 return .failure(CommunicationError.fetchError)
             }
@@ -69,6 +69,9 @@ class ContentViewModel: ObservableObject {
             return .success(encodeString)
         }
         
+        // 構造体からStringに変換できたか
+        // 変換できた → 変換データを返す
+        // 変換できなかった → エラー
         switch convertData() {
         case .success(let data):
             return data
@@ -94,7 +97,7 @@ class ContentViewModel: ObservableObject {
                                systemFingerprint: JSONNull())
         
         // 会話の履歴の削除
-        chatMessages.messages.removeAll()
+        messageManager.messages.removeAll()
         
         // 表示されている文字を削除
         content = ""
@@ -117,14 +120,14 @@ class ContentViewModel: ObservableObject {
             // フェッチ中のフラグを立てる
             isFetching = true
             // ユーザが入力したメッセージを記録する
-            chatMessages.setUserMessage(content: self.content)
+            messageManager.setUserMessage(content: self.content)
             // ユーザが入力したメッセージを表示する
             sentMessage = content
             // ユーザが入力したTextFieldの文字を空にする
             content.removeAll()
             
             // データ取得
-            let result = await client.fetch(messages: chatMessages.messages)
+            let result = await client.fetch(messages: messageManager.messages)
             
             // 戻ってきた結果が良ければ情報を入れる
             switch result {
@@ -140,7 +143,8 @@ class ContentViewModel: ObservableObject {
             }
             
             // 会話をMessageの配列に追加
-            chatMessages.messages.append(data.choices.first?.message ?? Message(role: "", content: ""))
+            messageManager.setAssistantMessage(message: data.choices.first?.message ?? Message(role: "", content: ""))
+            // 受け取ったメッセージを表示する
             receivedMessage = data.choices.first?.message.content ?? "No Message"
             
             // ロード終了

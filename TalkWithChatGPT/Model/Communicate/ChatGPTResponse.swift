@@ -36,7 +36,7 @@ struct Choice: Codable {
 }
 
 // MARK: - Message
-struct Message: Codable {
+struct Message: Codable, Hashable {
     let role, content: String
 }
 
