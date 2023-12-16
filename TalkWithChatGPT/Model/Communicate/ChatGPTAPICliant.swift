@@ -40,7 +40,7 @@ struct ChatGPTAPICliant {
         }
     }
     
-    func fetch(message: [ChatGPTMessage]) async -> Result<ChatGPTResponse, Error> {
+    func fetch(messages: [Message]) async -> Result<ChatGPTResponse, Error> {
         do {
             guard let url = try makeURLComponents().url else {
                 return .failure(CommunicationError.cannotCreateURL)
@@ -48,7 +48,7 @@ struct ChatGPTAPICliant {
             
             // MARK: - httpBodyを作成
             var requestBody: Data? {
-                let encodeValue = ChatGPTRequestHttpBody(model: model, messages: message)
+                let encodeValue = ChatGPTRequestHttpBody(model: self.model, messages: messages)
                 return try? JSONEncoder().encode(encodeValue)
             }
             

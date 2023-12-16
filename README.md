@@ -42,6 +42,11 @@ iPhoneXs | iOS 16.3
 iPhone11Pro | iOS 17.0
 iPhone15ProMax | iOS 17.1.1
 
+# 今後改善したいポイント
+
+- Markdownへの対応
+- チャットアプリっぽい見た目に変更したい
+
 # 参考にしたサイト等
 これらのサイトや今までの課題アプリを参考に作成しました!
 - [【Swift】swiftからChatGPT APIを使ってみる](https://thwork.net/2023/04/08/swift_chatgpt-api/)

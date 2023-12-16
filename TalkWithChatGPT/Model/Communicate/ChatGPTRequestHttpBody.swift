@@ -10,10 +10,5 @@ import Foundation
 
 struct ChatGPTRequestHttpBody: Codable {
     let model: String
-    let messages: [ChatGPTMessage]
-}
-
-struct ChatGPTMessage: Codable {
-    let role: String
-    let content: String
+    let messages: [Message]
 }

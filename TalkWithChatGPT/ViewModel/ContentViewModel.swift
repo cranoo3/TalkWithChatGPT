@@ -49,32 +49,27 @@ class ContentViewModel: ObservableObject {
         
     }
     
-    // MARK: - convertData()
-    /// 会話データをJSONからStringへ変換します
-    /// - Returns: JSONをStringに変換したものをかえします
-    ///     変換できなかった時はエラーを吐きます
-    private func convertData() -> Result<String, Error> {
-        // 構造体をStringへ変換
-        let encodeValue = ChatGPTRequestHttpBody(model: gptModel, messages: chatMessages.chatGPTRequestMessage)
-        guard let shareValue = try? JSONEncoder().encode(encodeValue) else {
-            return .failure(CommunicationError.fetchError)
-        }
-        
-        guard let encodeString = String(data: shareValue, encoding: .utf8) else {
-            return .failure(CommunicationError.fetchError)
-        }
-        
-        return .success(encodeString)
-    }
-    
     // MARK: - shareData()
     /// 今までの会話データを共有します
     /// - Returns: convertDataでStringに正しく変換できた場合、データを返します
     /// 帰ってきたデータを共有します
     func shareData() -> String {
-        let resultData = convertData()
+        /// 会話データをJSONからStringへ変換します
+        let convertData = { () -> Result<String, Error> in
+            // 構造体をStringへ変換
+            let encodeValue = self.chatMessages.messages
+            guard let shareValue = try? JSONEncoder().encode(encodeValue) else {
+                return .failure(CommunicationError.fetchError)
+            }
+            
+            guard let encodeString = String(data: shareValue, encoding: .utf8) else {
+                return .failure(CommunicationError.fetchError)
+            }
+            
+            return .success(encodeString)
+        }
         
-        switch resultData {
+        switch convertData() {
         case .success(let data):
             return data
         case .failure(let error):
@@ -99,7 +94,7 @@ class ContentViewModel: ObservableObject {
                                systemFingerprint: JSONNull())
         
         // 会話の履歴の削除
-        chatMessages.chatGPTRequestMessage = []
+        chatMessages.messages.removeAll()
         
         // 表示されている文字を削除
         content = ""
@@ -129,18 +124,12 @@ class ContentViewModel: ObservableObject {
             content.removeAll()
             
             // データ取得
-            let result = await client.fetch(message: chatMessages.chatGPTRequestMessage)
+            let result = await client.fetch(messages: chatMessages.messages)
             
             // 戻ってきた結果が良ければ情報を入れる
             switch result {
             case .success(let data):
                 self.data = data
-                let assistantMessage = data.choices.first?.message.content ?? "no message"
-                // ChatGPTからの返答を記録する
-                chatMessages.setAssistantMessage(content: assistantMessage)
-                // ChatGPTからの返信を表示する
-                receivedMessage = assistantMessage
-                
             case .failure(let error):
                 isShowErrorAlert = true
                 if let error = error as? CommunicationError {
@@ -149,6 +138,10 @@ class ContentViewModel: ObservableObject {
                     errorMessage = error.localizedDescription
                 }
             }
+            
+            // 会話をMessageの配列に追加
+            chatMessages.messages.append(data.choices.first?.message ?? Message(role: "", content: ""))
+            receivedMessage = data.choices.first?.message.content ?? "No Message"
             
             // ロード終了
             isFetching = false
