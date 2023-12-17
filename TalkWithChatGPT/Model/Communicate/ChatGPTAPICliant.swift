@@ -65,7 +65,7 @@ struct ChatGPTAPICliant {
             urlRequest.httpBody = requestBody
             
             guard let (data, urlRequest) = try? await URLSession.shared.data(for: urlRequest) else {
-                return .failure(CommunicationError.badURL)
+                return .failure(CommunicationError.couldNotCreateRequest)
             }
             
             // MARK: - 情報を受け取る

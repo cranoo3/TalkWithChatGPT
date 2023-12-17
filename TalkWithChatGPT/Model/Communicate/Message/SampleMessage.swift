@@ -9,7 +9,9 @@ import Foundation
 
 /// Viewの表示を確認するためのサンプルメッセージです
 struct SampleMessage {
-    let sampleText = """
+    let sampleTextShort = "こんにちは"
+    
+    let sampleTextLong = """
 SwiftUIを使用してボタンを表示するには、以下のようにコードを記述できます。以下は、基本的な例です。
 
 swift

@@ -19,9 +19,9 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 // 背景のグラデーション
-                LinearGradient(colors: [.indigo, .purple], startPoint: .bottom, endPoint: .top)
+                LinearGradient(colors: [.purple, .indigo], startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
-                    .opacity(0.15)
+                    .opacity(0.1)
                 
                 // 送ったメッセージ、受け取ったメッセージが表示されるView
                 MessageView(viewModel: self.viewModel)
@@ -40,13 +40,14 @@ struct ContentView: View {
                         .padding(.horizontal)
                         // 背景色を透明に見せたい！
                         .background {
-                            // 背景色の設定
-                            Color.white
+                            // 背景のグラデーション
+                            LinearGradient(colors: [.clear, .white, .white, .white], startPoint: .top, endPoint: .bottom)
                                 .ignoresSafeArea()
-                            // 背景色
-                            Color.indigo
+                            
+                            LinearGradient(colors: [.clear, .indigo, .indigo, .indigo], startPoint: .top, endPoint: .bottom)
                                 .ignoresSafeArea()
-                                .opacity(0.15)
+                                .opacity(0.1)
+                            
                         }
                 }
                 

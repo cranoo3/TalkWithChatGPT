@@ -15,6 +15,9 @@ enum CommunicationError: Error {
     case badStatusCode(Int)
     case fetchError
     
+    case cannotExportData
+    case couldNotCreateRequest
+    
     var message: String {
         switch self {
         case .badURL:
@@ -29,6 +32,10 @@ enum CommunicationError: Error {
             return "通信ができませんでした\(statusCode)"
         case .fetchError:
             return "解析できませんでした"
+        case .cannotExportData:
+            return "データをエクスポートできませんでした"
+        case .couldNotCreateRequest:
+            return "リクエストを作成できませんでした"
         }
     }
 }

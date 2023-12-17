@@ -20,14 +20,19 @@ struct MessageView: View {
             ScrollView {
                 VStack {
                     ForEach(viewModel.messageManager.messages, id: \.self) { message in
+                        // 誰から送信されたかで表示されるViewを分ける
                         if message.role == "user" {
+                            // 送信したメッセージのロールが"ユーザー"だった場合
                             // 送信したメッセージ
                             SentMessageView(message: message.content)
+                            
                         } else if message.role == "assistant" {
                             // 受け取った文字列
                             ReceivedMessageView(viewModel: ContentViewModel(), model: viewModel.gptModel, message: message.content)
                         }
                     }
+                    
+                    // MARK: ここにサンプルテキストを表示するとデバッグできます
                     
                     // フェッチ中の場合はインジケーターを表示する
                     if viewModel.isFetching {
