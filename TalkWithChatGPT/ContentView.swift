@@ -41,12 +41,18 @@ struct ContentView: View {
                         // 背景色を透明に見せたい！
                         .background {
                             // 背景のグラデーション
-                            LinearGradient(colors: [.clear, .white, .white, .white], startPoint: .top, endPoint: .bottom)
-                                .ignoresSafeArea()
+                            LinearGradient(stops: [
+                                .init(color: .clear, location: 0.0),
+                                .init(color: .white, location: 0.3)
+                            ], startPoint: .top, endPoint: .bottom)
+                            .ignoresSafeArea()
                             
-                            LinearGradient(colors: [.clear, .indigo, .indigo, .indigo], startPoint: .top, endPoint: .bottom)
-                                .ignoresSafeArea()
-                                .opacity(0.1)
+                            LinearGradient(stops: [
+                                .init(color: .clear, location: 0.0),
+                                .init(color: .indigo, location: 0.3)
+                            ], startPoint: .top, endPoint: .bottom)
+                            .ignoresSafeArea()
+                            .opacity(0.1)
                             
                         }
                 }

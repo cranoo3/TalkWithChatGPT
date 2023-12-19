@@ -32,7 +32,11 @@ struct MessageView: View {
                         }
                     }
                     
-                    // MARK: ここにサンプルテキストを表示するとデバッグできます
+                    // MARK: サンプル用のView
+//                    SentMessageView(message: SampleMessage().sampleTextShort)
+//                    ReceivedMessageView(viewModel: ContentViewModel(), model: "GPT-4", message: SampleMessage().sampleTextLong)
+//                    SentMessageView(message: SampleMessage().sampleTextShort)
+//                    ReceivedMessageView(viewModel: ContentViewModel(), model: "GPT-4", message: SampleMessage().sampleTextLong)
                     
                     // フェッチ中の場合はインジケーターを表示する
                     if viewModel.isFetching {
