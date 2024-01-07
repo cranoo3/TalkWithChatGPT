@@ -12,6 +12,8 @@ class ContentViewModel: ObservableObject {
     let client = ChatGPTAPICliant()
     /// ChatGPTから帰ってきたデータが入っています
     var data: ChatGPTResponse
+    /// 背景色を管理する構造体
+    @Published var colors = ColorManager()
     /// ChatGPTへ送るメッセージを設定するクラス
     @Published var messageManager = MessageManager()
     /// エラーが発生した場合にアラートを表示させるためのフラグです

@@ -19,7 +19,7 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 // 背景のグラデーション
-                LinearGradient(colors: [.purple, .indigo], startPoint: .top, endPoint: .bottom)
+                viewModel.colors.gradient
                     .ignoresSafeArea()
                     .opacity(0.1)
                 

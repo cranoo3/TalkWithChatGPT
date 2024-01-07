@@ -37,7 +37,7 @@ struct TypingIndicatorView: View {
                     .scaleEffect(self.isAnimating ? 0.5: 1)
                     .animation(Animation.spring().repeatForever().delay(0.2), value: isAnimating)
             }
-            .padding(.leading)
+            .padding(.leading, 5)
             .onAppear {
                 self.isAnimating = true
             }

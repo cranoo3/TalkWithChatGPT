@@ -28,6 +28,7 @@
 		1DC7F3332B26389C00CFA589 /* MessageTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC7F3322B26389C00CFA589 /* MessageTextFieldView.swift */; };
 		1DC7F3372B2639BD00CFA589 /* MenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC7F3362B2639BD00CFA589 /* MenuButtonView.swift */; };
 		1DCE105F2B27439E00472B72 /* ChatGPTRequestHttpBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCE105E2B27439E00472B72 /* ChatGPTRequestHttpBody.swift */; };
+		1DFEEBAF2B392D40008D0763 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFEEBAE2B392D40008D0763 /* ColorManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		1DC7F3322B26389C00CFA589 /* MessageTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextFieldView.swift; sourceTree = "<group>"; };
 		1DC7F3362B2639BD00CFA589 /* MenuButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonView.swift; sourceTree = "<group>"; };
 		1DCE105E2B27439E00472B72 /* ChatGPTRequestHttpBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTRequestHttpBody.swift; sourceTree = "<group>"; };
+		1DFEEBAE2B392D40008D0763 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				1D55AC7C2B2440AF003D1904 /* GetPlist */,
 				1D55AC822B2441EA003D1904 /* Communicate */,
 				1D9677062B25F86B009D259D /* extensionString.swift */,
+				1DFEEBAE2B392D40008D0763 /* ColorManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				1D2695782B2E05DF00607BA0 /* TypingIndicatorView.swift in Sources */,
 				1D90F7232B26C1DB00ED6E67 /* SampleMessage.swift in Sources */,
 				1D9677072B25F86B009D259D /* extensionString.swift in Sources */,
+				1DFEEBAF2B392D40008D0763 /* ColorManager.swift in Sources */,
 				1D26956F2B2DC74700607BA0 /* SentMessageView.swift in Sources */,
 				1DC7F3332B26389C00CFA589 /* MessageTextFieldView.swift in Sources */,
 				1D5B8FF02B243C6D00886EE5 /* Common.swift in Sources */,

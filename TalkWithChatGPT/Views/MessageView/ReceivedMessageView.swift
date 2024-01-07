@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReceivedMessageView: View {
     @ObservedObject var viewModel: ContentViewModel
-    
+    @State private var rectangleCornerRadius: CGFloat = 15.0
     let model: String
     let message: String
     
@@ -26,9 +26,10 @@ struct ReceivedMessageView: View {
                     .padding(5)
                     .padding(.horizontal, 5)
                     .foregroundStyle(Color.black)
-                    .background(Color.gray.opacity(0.5))
-                    .clipShape(RoundedRectangle(cornerRadius: 15.0))
+                    .background(Color.gray.opacity(0.4))
+                    .clipShape(RoundedRectangle(cornerRadius: rectangleCornerRadius))
                     .frame(maxWidth: 330, alignment: .leading)
+                    
             }
             
             Spacer()
