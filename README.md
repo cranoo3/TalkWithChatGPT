@@ -43,7 +43,7 @@ scrollViewにしているので問題なく閲覧できる
 - **APIの無料枠があるか確認しましょう**(僕は$5支払いました...)
 - Application.plistの**apiKeyのValueにAPI Key**、**orgIdのValueにOrganization ID**を入力すると使用できます
 - GPTのモデルを変更する場合は**modelのValue**を使いたいモデルにしましょう(例: gpt-3.5-turboやgpt-4など...)
-- クソコードなのは許して…
+- クソコードなのは許してください…
     ![ApplicationPlist](./ForReadMeImage/ApplicationPlist.png)
 
 ## 動作テスト済み機種
