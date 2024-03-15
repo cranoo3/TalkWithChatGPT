@@ -70,4 +70,7 @@ scrollViewにしているので問題なく閲覧できる
 
 - <a href="https://zenn.dev/mjxo/articles/342adeec61d56e" target="_blank">ChatGPTのOpenAI APIを初回実行した際出会ったエラー3点</a>	
 
-- <a href="https://qiita.com/district_13_bm/items/c946e8043e0e4d55d349" target="_blank">ChatGPT APIをSwiftで使ってみる。</a>	
+- <a href="https://qiita.com/district_13_bm/items/c946e8043e0e4d55d349" target="_blank">ChatGPT APIをSwiftで使ってみる。</a>
+
+# ライセンスについて
+MITライセンス内でご自由にお使いください
